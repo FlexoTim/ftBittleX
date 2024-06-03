@@ -56,10 +56,13 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
+      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
+echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Running $(TargetName) ...</Message>
@@ -80,10 +83,13 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
+      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
+echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Running $(TargetName) ...</Message>
@@ -105,10 +111,13 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
+      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
+echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Running $(TargetName) ...</Message>
@@ -130,10 +139,13 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
+      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
+echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+</Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Running $(TargetName) ...</Message>
@@ -143,12 +155,19 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"</Command>
     <ClInclude Include="ftBittleX.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ftbehavior.cpp" />
     <ClCompile Include="ftBittleX.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ftfcmd_def_t.cpp" />
+    <ClCompile Include="ftgait.cpp" />
+    <ClCompile Include="ftposture.cpp" />
+    <ClCompile Include="ftprotocol.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="utSerial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
