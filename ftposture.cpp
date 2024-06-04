@@ -16,15 +16,10 @@ namespace utPetoi {
 		TEST_F(ftfBittleXPosture, ButtUp_skill) {
 			EXPECT_TRUE(on_buttUp());
 		}
-		TEST_F(ftfBittleXPosture, Calibrate_skill) {
-			EXPECT_TRUE(on_calibrate());
-			ASSERT_TRUE(on_abort());
-		}
 
 		TEST_F(ftfBittleXPosture, Dropped) {
 			EXPECT_TRUE(on_dropped());
 		}
-		//#pragma message("TODO: lifted posture tests")
 		TEST_F(ftfBittleXPosture, Lifted) {
 			EXPECT_TRUE(on_lifted());
 		}

@@ -35,10 +35,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ShortProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(ShortProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -56,12 +64,15 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+
+
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -83,12 +94,15 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+
+
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -111,12 +125,15 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+
+
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>
@@ -139,12 +156,15 @@ $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>$(ProjectDir)..\OpenCat_serial\serial\visual_studio\serial\$(Platform)\$(Configuration)\serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
-$(TargetPath) --gtest_repeat=1 --gtest_filter="*.*"
+echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+
+
 </Command>
     </PostBuildEvent>
     <PostBuildEvent>

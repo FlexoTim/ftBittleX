@@ -88,6 +88,55 @@ namespace utPetoi {
 		// n.b., affects voice response
 		TEST_F(ftfBittleXProtocol, CALIBRATE) {
 			EXPECT_TRUE(on_calibrate());
+			EXPECT_EQ(5, response.size());
+			ASSERT_TRUE(on_abort());
+		}
+		TEST_F(ftfBittleXProtocol, CALIBRATE_read) {
+			vector <joint_t> list{};
+			EXPECT_TRUE(on_calibrate(list));
+			ASSERT_TRUE(on_abort());
+		}
+
+		TEST_F(ftfBittleXProtocol, CALIBRATE_joint) {
+			joint_t joint{LARM, 8};
+			EXPECT_TRUE(on_calibrate(joint));
+			EXPECT_EQ(5, response.size());
+			ASSERT_TRUE(on_abort());
+		}
+		TEST_F(ftfBittleXProtocol, CALIBRATE_joint_bylist) {
+			vector <joint_t> list{
+				{HEAD, 1}
+				, {LARM, 9}
+				, {RARM, 10}
+				, {RHIP, 11}
+				, {LHIP, 12}
+				, {LFOREARM, 13}
+				, {RFOREARM, 14}
+				, {RLEG, 15}
+				, {LLEG, 16}
+			};
+			for (auto joint : list) {
+				EXPECT_TRUE(on_calibrate(joint));
+				EXPECT_LE(4, response.size());	// may have "calib" lins
+				sleep_for(milliseconds(50));
+			}
+			ASSERT_TRUE(on_abort());
+		}
+
+		TEST_F(ftfBittleXProtocol, CALIBRATE_list) {
+			const vector <joint_t> list{
+				{HEAD, 1}
+				, {LARM, 9}
+				, {RARM, 10}
+				, {RHIP, 11}
+				, {LHIP, 12}
+				, {LFOREARM, 13}
+				, {RFOREARM, 14}
+				, {RLEG, 15}
+				, {LLEG, 16}
+			};
+			EXPECT_TRUE(on_calibrate(list));
+			EXPECT_LE(list.size() * 3, response.size());
 			ASSERT_TRUE(on_abort());
 		}
 
@@ -438,6 +487,8 @@ namespace utPetoi {
 					<< val << "\n";
 			}
 		}
+		TEST_F(ftfBittleXProtocol, DISABLED_DIGITAL_WRITE) {
+		}
 
 		TEST_F(ftfBittleXProtocol, ANALOG_READ) {
 			const uint8_t VOLTAGE_PIN{ 4 };
@@ -448,6 +499,8 @@ namespace utPetoi {
 				cout << left << setw(12) << "Voltage" << ": "
 					<< voltage << "\n";
 			}
+		}
+		TEST_F(ftfBittleXProtocol, DISABLED_ANALOG_WRITE) {
 		}
 
 		// n.b., block EEPROM writes
@@ -490,14 +543,6 @@ namespace utPetoi {
 			};
 			EXPECT_TRUE(on_command(list));
 		}
-
-		// ====================================================
-		// skill commands
-		// ====================================================
-
-		// ====================================================
-		// skill posture
-		// ====================================================
 
 		// ====================================================
 		// example.py - sample from python code
@@ -635,6 +680,8 @@ namespace utPetoi {
 			EXPECT_TRUE(on_detect_minmax_angle(jlim));
 			min_angle = angle_t(INT8_MAX);
 			max_angle = angle_t(INT8_MAX);
+			EXPECT_EQ(jlim[0].min_angle, angleLimit[HEAD][0]);
+			EXPECT_GE(jlim[0].max_angle, angleLimit[HEAD][1]);
 			EXPECT_EQ(jlim[1].min_angle, angleLimit[RLEG][0]);
 			EXPECT_GE(jlim[1].max_angle, angleLimit[RLEG][1]);
 			EXPECT_EQ(jlim[2].min_angle, angleLimit[LLEG][0]);

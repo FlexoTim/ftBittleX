@@ -268,8 +268,31 @@ namespace utPetoi {
 
 		// ====================================================
 		// ====================================================
+		bool ftfBittleX::parse_commandline()
+		{
+			for (auto arg : commandline) {
+				string param{ "--port=" };
+				size_t pos{ arg.find(param) };
+				if (string::npos != pos) {
+					pos += param.length();
+					port = arg.substr(pos);
+					continue;
+				}
+				param = "--baud=";
+				pos = arg.find(param);
+				if (string::npos != pos) {
+					pos += param.length();
+					baud = atol(arg.substr(pos).c_str());
+					continue;
+				}
+			}
+			return true;
+		}
+
 		bool ftfBittleX::on_connect()
 		{
+			EXPECT_TRUE(parse_commandline());
+
 			EXPECT_NO_THROW(ftSerial.setBaudrate(baud));
 			EXPECT_NO_THROW(ftSerial.setTimeout(ctimeout));
 			EXPECT_NO_THROW(ftSerial.setBytesize(bytesize));
@@ -391,9 +414,14 @@ namespace utPetoi {
 			}
 
 			{
-				size_t EOL_count{
-					('k' == tolower(command.cmd[0])) ? 2U : 1U
+				size_t EOL_needed{
+					('k' == tolower(command.cmd[0]))		// skill
+					? 2U
+					: ('c' == tolower(command.cmd[0]))	// calibrate
+						? 2U
+						: 1U
 				};
+				size_t EOL_count{ EOL_needed };
 				string EOLstr{ command.cmd[0] };
 				EOLstr += "\r\n";
 				string EOLtoggle{ EOLstr };
@@ -433,6 +461,7 @@ namespace utPetoi {
 						cout << "Command completed: toggle\n";
 						break;
 					}
+					EOL_count = EOL_needed;		// rest EOL count;
 				}
 				command.RX_elapsed = RXelapsed.elapsed();
 				result = result && (command.RX_elapsed < milliseconds(latency));
@@ -737,6 +766,54 @@ namespace utPetoi {
 			cmd_def_t command{ CALIBRATE, "c", "CALIBRATE" };
 			return on_command(command);
 		}
+		bool ftfBittleX::on_calibrate(vector <joint_t>& list)
+		{
+			list.clear();
+			bool result{ on_calibrate() };
+			result = result && (5U == response.size());
+			if (!result) {
+				return result;
+			}
+			// calib
+			// <joint index list>
+			// <angle>,...<angle>,
+			// c
+			// c
+			istringstream is{ response[2] };
+			uint8_t idx{ 0 };
+			while (is) {
+				angle_t angle;
+				char comma;
+				is >> angle >> comma;
+				if (is.fail()) {
+					break;
+				}
+				joint_t joint{ idx++, angle};
+				list.push_back(joint);
+			}
+			result = (idx == list.size());
+			return result;
+		}
+
+		bool ftfBittleX::on_calibrate(const joint_t& joint)
+		{
+			cmd_def_t command{ CALIBRATE, "c", "CALIBRATE" };
+			command += joint;
+			return on_command(command);
+		}
+		bool ftfBittleX::on_calibrate(const vector <joint_t>& list )
+		{
+			// first put into calibarate mode
+			cmd_def_t command{ CALIBRATE, "c", "CALIBRATE" };
+			bool result{ on_command(command) };
+			//bool result{ true };
+
+			// now send list
+			command += list;
+			result = result && on_command(command);
+
+			return result;
+		}
 
 		bool ftfBittleX::on_rest()
 		{
@@ -795,6 +872,9 @@ namespace utPetoi {
 				int angle;
 				char comma;
 				is >> angle >> comma;
+				if (is.fail()) {
+					break;
+				}
 				joint.push_back(int8_t(angle));
 			}
 
@@ -1020,6 +1100,11 @@ namespace utPetoi {
 		bool ftfBittleX::on_decelerate()
 		{
 			cmd_def_t command{ DECELERATE, ",", "DECELERATE" };
+			return on_command(command);
+		}
+		bool ftfBittleX::on_reset()
+		{
+			cmd_def_t command{ RESET, "!", "RESET" };
 			return on_command(command);
 		}
 

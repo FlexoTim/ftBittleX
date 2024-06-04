@@ -751,13 +751,8 @@ namespace utPetoi {
 				EXPECT_TRUE(on_disconnect());
 			}
 		protected:
-			// n.b., overloading restricts the API to C++;
-			// a subset would be more compatible
-
-			// todo: use references
-			// todo: use const API
-
-			ostream& echo_response(ostream& os);
+			// ====================================
+			// ====================================
 
 			bool on_connect();
 			bool on_disconnect();
@@ -767,13 +762,26 @@ namespace utPetoi {
 			bool on_response(cmd_def_t& command, unsigned latency = RX_LATENCY_DEF);
 			bool on_command(cmd_def_t& command, unsigned latency = RX_LATENCY_DEF);
 			bool on_command(const vector <cmd_def_t>& command, unsigned latency = RX_LATENCY_DEF);
+			ostream& echo_response(ostream& os);
+
 			bool on_detect_minmax_angle(angle_limit_t& joint);
 			bool on_detect_minmax_angle(vector <angle_limit_t>& joint_lim = joint_limit);
 			bool on_verify(joint_t& joint, angle_t angle);
 			bool on_verify(const vector <joint_t>& list);
 
-			// commands
+			// conversion from array to class
+			template <typename T>
+			bool on_extract(const int8_t skill[], size_t size, T& type)
+			{
+				string strskill{ skill, skill + size };
+				istringstream is{ strskill };
+				is >> type;
+				return !is.fail();
+			}
+
+			// ====================================
 			// protocol API's
+			// ====================================
 			bool on_query();
 			bool on_abort();
 			bool on_getmute();
@@ -781,6 +789,10 @@ namespace utPetoi {
 			bool on_volume(const int8_t& vol);
 			bool on_playtune(const vector <note_t>& tune);
 			bool on_calibrate();
+			bool on_calibrate(vector <joint_t>& list);
+			bool on_calibrate(const joint_t& joint);
+			bool on_calibrate(const vector <joint_t>& list);
+
 			bool on_rest();
 
 			// group sequential and simultaneous,
@@ -825,14 +837,7 @@ namespace utPetoi {
 			bool on_servo_pwm();		// disabled
 			bool on_accelerate();		// disabled
 			bool on_decelerate();		// disabled
-
-		private:
-			// not implemented
-			// write to EEPROM
-			// marks board as uninitialized
-			bool on_reset();
-
-		protected:
+			bool on_reset();			// marks board as uninitialized
 
 			// skill api's
 
@@ -946,15 +951,9 @@ namespace utPetoi {
 
 			bool on_skill_data(const int8_t pu[], size_t size);
 
-			// conversion from array to class
-			template <typename T>
-			bool on_extract(const int8_t skill[], size_t size, T& type)
-			{
-				string strskill{ skill, skill + size };
-				istringstream is{ strskill };
-				is >> type;
-				return !is.fail();
-			}
+		private:
+			bool parse_commandline();
+
 
 		private:
 			bool on_setjoint(cmd_def_t& command, const uint8_t idx, const angle_t angle);
