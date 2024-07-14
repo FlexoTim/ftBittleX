@@ -91,6 +91,14 @@ namespace utPetoi {
 			EXPECT_EQ(5, response.size());
 			ASSERT_TRUE(on_abort());
 		}
+		TEST_F(ftfBittleXProtocol, CALIBRATE_twice) {
+			EXPECT_TRUE(on_calibrate());
+			EXPECT_EQ(5, response.size());
+			EXPECT_TRUE(on_calibrate());
+			EXPECT_EQ(5, response.size());
+			ASSERT_TRUE(on_abort());
+		}
+
 		TEST_F(ftfBittleXProtocol, CALIBRATE_read) {
 			vector <joint_t> list{};
 			EXPECT_TRUE(on_calibrate(list));
@@ -118,7 +126,7 @@ namespace utPetoi {
 			for (auto joint : list) {
 				EXPECT_TRUE(on_calibrate(joint));
 				EXPECT_LE(4, response.size());	// may have "calib" lins
-				sleep_for(milliseconds(50));
+				//sleep_for(milliseconds(50));
 			}
 			ASSERT_TRUE(on_abort());
 		}

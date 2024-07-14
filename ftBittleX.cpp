@@ -791,7 +791,7 @@ namespace utPetoi {
 				joint_t joint{ idx++, angle};
 				list.push_back(joint);
 			}
-			result = (idx == list.size());
+			result = (list.size() == idx);
 			return result;
 		}
 
@@ -803,10 +803,12 @@ namespace utPetoi {
 		}
 		bool ftfBittleX::on_calibrate(const vector <joint_t>& list )
 		{
-			// first put into calibarate mode
 			cmd_def_t command{ CALIBRATE, "c", "CALIBRATE" };
+			// first put into calibarate mode
 			bool result{ on_command(command) };
-			//bool result{ true };
+			if (!result) {
+				return result;
+			}
 
 			// now send list
 			command += list;

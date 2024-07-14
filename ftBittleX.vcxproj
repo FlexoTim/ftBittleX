@@ -70,7 +70,7 @@
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
 
 
 </Command>
@@ -100,7 +100,7 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIB
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
 
 
 </Command>
@@ -131,7 +131,7 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIB
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
 
 
 </Command>
@@ -162,7 +162,7 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIB
       <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
 echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIBRATE*" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
 
 
 </Command>
@@ -177,16 +177,22 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.CALIB
   <ItemGroup>
     <ClCompile Include="ftbehavior.cpp" />
     <ClCompile Include="ftBittleX.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ftfcmd_def_t.cpp" />
     <ClCompile Include="ftgait.cpp" />
     <ClCompile Include="ftposture.cpp" />
     <ClCompile Include="ftprotocol.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="utreaction.cpp" />
     <ClCompile Include="utSerial.cpp" />
   </ItemGroup>
   <ItemGroup>
