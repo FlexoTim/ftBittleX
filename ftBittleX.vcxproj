@@ -71,7 +71,8 @@
 echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
 echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.QUERY"
 
 
 </Command>
@@ -102,7 +103,8 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavi
 echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
 echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.QUERY"
 
 
 </Command>
@@ -134,7 +136,8 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavi
 echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
 echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.QUERY"
 
 
 </Command>
@@ -166,7 +169,8 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavi
 echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
 echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.QUERY"
 
 
 </Command>
