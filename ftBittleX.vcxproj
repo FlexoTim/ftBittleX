@@ -67,10 +67,11 @@
       <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+      <Command>echo $(TargetPath) -h
+echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
 
 
 </Command>
@@ -97,10 +98,11 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Postur
       <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+      <Command>echo $(TargetPath) -h
+echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
 
 
 </Command>
@@ -128,10 +130,11 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Postur
       <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+      <Command>echo $(TargetPath) -h
+echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
 
 
 </Command>
@@ -159,10 +162,11 @@ $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Postur
       <AdditionalDependencies>$(OutDir)serial.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" -h
-echo $(TargetPath) --gtest_repeat=1 --gtest_filter="*.*" --gtest_list_tests
+      <Command>echo $(TargetPath) -h
+echo $(TargetPath) --gtest_list_tests
 echo $(TargetPath) ---port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*.*"
-$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+echo $(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Posture.Standup:*Gait.walk_forward" 
+$(TargetPath) --port=COM5 --baud=115200 --gtest_repeat=1 --gtest_filter="*Behavior.*"
 
 
 </Command>
